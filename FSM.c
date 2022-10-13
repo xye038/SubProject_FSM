@@ -8,20 +8,20 @@ void Fsm_Create(FSM_t *fsm, uint8_t Event,
                 )
 {
    fsm->CurState = Current_System_State;
-   fsm->eventActFun = EventActFunc;       //回调函数需用户自己实现
+   fsm->eventActFun = EventActFunc;       //回调函数需用户自己实现 
    fsm->event = Event;
    fsm->Next = Head_FSM;
-   Head_FSM = fsm;
+   Head_FSM = fsm; 
   }
 
-void Fsm_Process(void)
+void Fsm_Process(void)                           //需要在主函数中去调用
 {
   struct FSM_s *pass_fsm;
   for(pass_fsm = Head_FSM; pass_fsm != NULL; pass_fsm = pass_fsm->Next)
   {
     if((pass_fsm->CurState==System_State)&&(pass_fsm->event==Trigger_Event))
     {
-      pass_fsm->eventActFun(NULL);
+      pass_fsm->eventActFun(NULL);     
     }
   }
 }
